@@ -15,13 +15,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #pragma once
+#include "config_common.h"
 
+#define PRODUCT         dactyl_manuform_5x6
+#define DESCRIPTION     dactyl_manuform_5x6_for_mtse
 
+// Serial, not i2c wiring
 #define USE_SERIAL
 
+// Default to master left
 #define MASTER_LEFT
-// #define MASTER_RIGHT
-//#define EE_HANDS
-// Rows are doubled-up
+
+// Rows are doubled-up, because it is the total number of rows between the two halves.
+#define MATRIX_ROWS 12
+#define MATRIX_COLS 6
+
+// wiring of each half, use the bottom left 6 and the bottom right 6 pins.
+#define MATRIX_COL_PINS { D4, C6, D7, E6, B4, B5 }
+#define MATRIX_ROW_PINS { F6, F7, B1, B3, B2, B6 }
+
+// Mirror the pins on the other side.
+#define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
+#define MATRIX_ROW_PINS_RIGHT { D4, C6, D7, E6, B4, B5 }
+
+// Default diode direction
+#define DIODE_DIRECTION COL2ROW
+
