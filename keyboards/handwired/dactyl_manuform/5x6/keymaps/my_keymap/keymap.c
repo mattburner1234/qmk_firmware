@@ -10,6 +10,24 @@
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
 
+enum custom_keycodes {
+    LAYER_CLEAR = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case LAYER_CLEAR:
+        if (record->event.pressed) {
+            // when keycode LAYER_CLEAR is pressed
+            layer_clear();
+        } else {
+            // when keycode LAYER_CLEAR is released
+        }
+        break;
+    }
+    return true;
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_5x6(
@@ -20,14 +38,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       KC_CAPSLOCK,KC_LBRACKET,                                                       KC_RBRACKET, KC_EQL,
                                       KC_LALT,KC_SPC,                        KC_SPACE, KC_ENTER,
                                       KC_CAPSLOCK,KC_LCTRL,                         KC_BSPACE,  TG(3),
-                                      TG(1), KC_LGUI,                        KC_DELETE, TG(2)
+                                      TG(1), KC_LGUI,                        LAYER_CLEAR, TG(2)
   ),
 
   [_LOWER] = LAYOUT_5x6(
 
      KC_TRANSPARENT,KC_TRANSPARENT, KC_TRANSPARENT ,KC_TRANSPARENT,KC_TRANSPARENT ,KC_TRANSPARENT,                        KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-     KC_TRANSPARENT,KC_HOME,KC_W,KC_UP,KC_TRANSPARENT,KC_PGUP,                        KC_TRANSPARENT, KC_TRANSPARENT , KC_P8 , KC_P9 ,KC_TRANSPARENT,KC_TRANSPARENT,
-     KC_TRANSPARENT,KC_END,KC_LEFT,KC_DOWN,KC_RIGHT ,KC_PGDOWN,                        KC_TRANSPARENT, KC_P4 , KC_P5 , KC_P6 ,KC_TRANSPARENT,KC_TRANSPARENT,
+     KC_TRANSPARENT,KC_HOME,KC_W,KC_UP,KC_TRANSPARENT,KC_PGUP,                        KC_TRANSPARENT, KC_TRANSPARENT , KC_TRANSPARENT , KC_TRANSPARENT ,KC_TRANSPARENT,KC_TRANSPARENT,
+     KC_TRANSPARENT,KC_END,KC_LEFT,KC_DOWN,KC_RIGHT ,KC_PGDOWN,                        KC_TRANSPARENT, KC_TRANSPARENT , KC_TRANSPARENT , KC_TRANSPARENT ,KC_TRANSPARENT,KC_TRANSPARENT,
      KC_LSHIFT,KC_TRANSPARENT,KC_X,KC_C,KC_V,KC_TRANSPARENT,                        KC_TRANSPARENT, KC_TRANSPARENT , KC_TRANSPARENT , KC_TRANSPARENT ,KC_TRANSPARENT ,KC_TRANSPARENT,
                                              KC_TRANSPARENT,KC_TRANSPARENT,            KC_TRANSPARENT, KC_TRANSPARENT,
                                              KC_LALT,KC_TRANSPARENT,            KC_TRANSPARENT,KC_TRANSPARENT,
@@ -42,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRANSPARENT,KC_TRANSPARENT,KC_KP_4  ,KC_KP_5,KC_KP_6,KC_KP_PLUS,                        KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
        KC_TRANSPARENT,KC_TRANSPARENT,KC_KP_1,KC_KP_2,KC_KP_3,KC_KP_ENTER,                        KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
                                                KC_KP_0,KC_KP_DOT,            KC_TRANSPARENT ,KC_TRANSPARENT,
-                                               KC_KP_0,KC_KP_DOT,            KC_TRANSPARENT,KC_TRANSPARENT,
+                                               KC_KP_ENTER,KC_KP_ENTER,            KC_TRANSPARENT,KC_TRANSPARENT,
                                                KC_TRANSPARENT,KC_TRANSPARENT,            KC_TRANSPARENT,KC_TRANSPARENT,
                                                KC_TRANSPARENT,KC_TRANSPARENT,            KC_TRANSPARENT,KC_TRANSPARENT
   ),
