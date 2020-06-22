@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       KC_PAUSE,KC_LBRACKET,                                                       KC_RBRACKET, KC_EQL,
                                       KC_LALT,KC_SPC,                        KC_BSPACE, KC_ENTER,
                                       KC_LGUI,KC_LCTRL,                         KC_CAPSLOCK,  LAYER_CLEAR,
-                                      TG(1), OSL(3),                        OSL(3), TG(2)
+                                      TO(1), OSL(3),                        OSL(3), TO(2)
   ),
 
   [_LOWER] = LAYOUT_5x6(
